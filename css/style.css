@@ -1,0 +1,333 @@
+/* ===== CSS VARIABLES ===== */
+:root {
+  --primary-color: #1f3d2b; /* Dark olive green */
+  --secondary-color: #3a3a3a; /* Warm grey */
+  --success-color: #2d5a2d; /* Dark green */
+  --warning-color: #c7a14a; /* Muted gold */
+  --light-bg: #f7f6f2; /* Off-white */
+  --dark-text: #1a1a1a; /* Charcoal */
+
+  --heading-font: 'Playfair Display', serif;
+  --body-font: 'Inter', sans-serif;
+
+  --font-size-base: 1rem;
+  --line-height-base: 1.6;
+
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 3rem;
+
+  --border-radius: 0.25rem;
+
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+
+  --transition: 0.4s ease;
+}
+
+/* ===== BASE STYLES ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--dark-text);
+  background-color: #fff;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--heading-font);
+  font-weight: 400;
+  line-height: 1.3;
+  margin-bottom: var(--spacing-lg);
+  color: var(--primary-color);
+}
+
+p {
+  margin-bottom: var(--spacing-md);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+/* ===== HERO SECTION ===== */
+.hero-section {
+  padding: var(--spacing-xl) 0;
+  background-color: var(--light-bg);
+}
+
+.min-vh-75 {
+  min-height: 75vh;
+}
+
+.certifications {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+  margin-bottom: var(--spacing-lg);
+}
+
+.cert-badge {
+  background-color: var(--primary-color);
+  color: white;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* ===== WHY CHOOSE US ===== */
+#why-choose {
+  padding: var(--spacing-xl) 0;
+  background-color: #fff;
+}
+
+#why-choose h5 {
+  font-family: var(--heading-font);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--primary-color);
+}
+
+/* ===== PRODUCT CARDS ===== */
+.product-card {
+  border: 1px solid #e0e0e0;
+  background-color: #fff;
+  transition: var(--transition);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card .card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 140px;
+}
+
+.product-card:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+
+.card-img-wrapper {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--light-bg);
+  padding: var(--spacing-md);
+}
+
+.card-img-wrapper img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.card-title {
+  font-family: var(--heading-font);
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-sm);
+}
+
+/* ===== QUALITY SECTION ===== */
+.cert-card {
+  border: 1px solid #e0e0e0;
+  background-color: #fff;
+  transition: var(--transition);
+}
+
+.cert-card:hover {
+  box-shadow: var(--shadow);
+}
+
+/* ===== GLOBAL REACH ===== */
+#global-reach {
+  padding: var(--spacing-xl) 0;
+}
+
+
+
+/* ===== CTA SECTION ===== */
+.bg-cta {
+  background-color: #1f3d2b; /* Dark earthy green/charcoal */
+}
+
+.cta-section {
+  padding: var(--spacing-xl) 0;
+  color: white;
+}
+
+.cta-section h2,
+.cta-section p {
+  color: white;
+}
+
+.btn-whatsapp-cta {
+  background-color: #2d5a2d; /* Dark green */
+  border-color: #2d5a2d;
+  color: white;
+}
+
+.btn-whatsapp-cta:hover {
+  background-color: #244824;
+  border-color: #244824;
+  color: white;
+}
+
+.btn-outline-white {
+  border-color: white;
+  color: white;
+  background-color: transparent;
+}
+
+.btn-outline-white:hover {
+  background-color: white;
+  color: #1f3d2b;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+  font-family: var(--body-font);
+  font-weight: 500;
+  border-radius: var(--border-radius);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  transition: var(--transition);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: #1a3524;
+  border-color: #1a3524;
+}
+
+.btn-success {
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+}
+
+.btn-success:hover {
+  background-color: #244824;
+  border-color: #244824;
+}
+
+.btn-outline-primary {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* ===== ANIMATIONS ===== */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+.fade-in-up.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+
+/* ===== WHATSAPP FLOAT ===== */
+.whatsapp-float {
+  position: fixed;
+  width: 56px;
+  height: 56px;
+  bottom: 24px;
+  right: 24px;
+  background-color: #25d366;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  z-index: 100;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(37, 211, 102, 0.3);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .hero-section .col-lg-7 {
+    text-align: center;
+  }
+
+  .certifications {
+    justify-content: center;
+  }
+
+  .d-flex.gap-3 {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 576px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .hero-section {
+    padding: var(--spacing-lg) 0;
+  }
+
+  .product-card .card-img-wrapper {
+    height: 140px;
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===== PRINT ===== */
+@media print {
+  .whatsapp-float,
+  .navbar {
+    display: none !important;
+  }
+}
