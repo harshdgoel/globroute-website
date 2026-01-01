@@ -58,6 +58,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+}
+
+.site-header .navbar-toggler {
+  margin-left: auto;
+  order: 2;
 }
 
 .site-header .navbar-brand {
@@ -69,8 +75,22 @@ body {
 }
 
 .site-header .navbar-toggler {
-  border: none;
-  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 0.375rem;
+  padding: 0.375rem 0.5rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+}
+
+.site-header .navbar-toggler:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+.site-header .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='m4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  filter: none;
 }
 
 .site-header .navbar-nav {
@@ -101,29 +121,79 @@ body {
   align-items: center;
 }
 
+/* Mobile navigation - show on all screens smaller than desktop */
 @media (max-width: 991px) {
   .site-header .navbar-nav {
     flex-direction: column;
     gap: 0.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    padding: 1rem;
-    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
     position: absolute;
     top: 100%;
-    left: 0;
-    right: 0;
+    left: 1rem;
+    right: 1rem;
     z-index: 999;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
+    transform: translateY(-20px) scale(0.95);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Force display for debugging */
+    display: flex !important;
   }
 
   .site-header .navbar-collapse.show .navbar-nav {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
+  }
+
+  /* Make mobile nav links highly visible */
+  .site-header .navbar-nav .nav-link {
+    color: #1a1a1a !important;
+    background-color: #f8f9fa;
+    font-weight: 600;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+    text-align: center;
+    font-size: 1.1rem;
+    border: 2px solid #e9ecef;
+    margin: 0.25rem 0;
+    display: block;
+    text-decoration: none;
+  }
+
+  .site-header .navbar-nav .nav-link:hover {
+    background-color: #1f3d2b;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(31, 61, 43, 0.3);
+    border-color: #1f3d2b;
+  }
+
+  .site-header .navbar-nav .nav-link.active {
+    background-color: #1f3d2b;
+    color: white !important;
+    border-color: #1f3d2b;
+  }
+}
+
+/* Extra small screens - ensure menu is always accessible */
+@media (max-width: 576px) {
+  .site-header .navbar-nav {
+    left: 0.5rem;
+    right: 0.5rem;
+    padding: 1rem;
+  }
+
+  .site-header .navbar-toggler {
+    padding: 0.5rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0.375rem;
   }
 }
 
@@ -455,6 +525,12 @@ a:hover {
 @media (max-width: 480px) {
   .glass-container {
     padding: 2rem;
+  }
+
+  /* Make feature item text black on mobile for visibility */
+  .feature-item h3,
+  .feature-item p {
+    color: #333 !important;
   }
 }
 
