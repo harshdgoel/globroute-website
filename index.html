@@ -258,7 +258,9 @@
           <p class="text-muted">Custom packaging and documentation for international shipping.</p>
         </div>
         <div class="col-lg-6 fade-in-up delay-1">
-          <div id="globeViz" style="width: 100%; max-width: 400px; margin: 0 auto;"></div>
+          <div class="globe-wrapper">
+            <div id="globeViz"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -384,6 +386,26 @@
 
   <!-- Globe.gl Earth Visualization Script -->
   <script>
+    // Proper DPR-based globe resizing function
+    const globeContainer = document.getElementById('globeViz');
+
+    function resizeGlobeProperly() {
+      const isMobile = window.innerWidth <= 768;
+      const size = isMobile ? 260 : 400;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      globeContainer.style.width = `${size}px`;
+      globeContainer.style.height = `${size}px`;
+
+      if (window.world) {
+        world
+          .width(size * dpr)
+          .height(size * dpr);
+
+        world.renderer().setPixelRatio(dpr);
+      }
+    }
+
     // Initialize Globe.gl with realistic daytime Earth for export visualization
     const world = Globe()
       .globeImageUrl('assets/world.topo.bathy.200412.3x5400x2700.jpg') // Local NASA Blue Marble daytime texture
@@ -399,8 +421,15 @@
         world.controls().autoRotateSpeed = 0.5;
         world.controls().enableZoom = false;
         world.controls().enablePan = false;
+        // Initial resize
+        resizeGlobeProperly();
       })
       (document.getElementById('globeViz'));
+
+    // Add resize listener with proper DPR handling
+    window.addEventListener('resize', resizeGlobeProperly);
+    // Initial call
+    resizeGlobeProperly();
 
     // Define export destinations with coordinates
     const INDIA = { lat: 20.5937, lng: 78.9629, label: 'India' };

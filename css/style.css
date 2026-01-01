@@ -32,6 +32,11 @@
   box-sizing: border-box;
 }
 
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   padding-top: 80px;
@@ -780,7 +785,48 @@ a:hover {
 }
 
 /* ===== RESPONSIVE ===== */
+/* Comprehensive mobile layout centering fixes */
 @media (max-width: 768px) {
+  /* Fix Bootstrap row negative margins causing left shift */
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* Force all layout containers to be centered */
+  .container,
+  .section-panel,
+  .glass-container,
+  .hero,
+  .page-content,
+  .hero-content,
+  .cta-panel {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Center hero and section content */
+  .hero,
+  .section-panel,
+  .glass-container,
+  .hero-content,
+  .cta-panel {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  /* Ensure navbar container is centered */
+  .navbar .container {
+    justify-content: space-between !important;
+  }
+
+  /* Existing responsive styles */
   .hero-section .col-lg-7 {
     text-align: center;
   }
@@ -841,6 +887,36 @@ a:hover {
   .hero-actions {
     flex-direction: column;
     gap: 0.75rem;
+  }
+
+  /* Mobile globe centering and sizing - with DPR fix */
+  .globe-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  #globeViz {
+    width: 100%;
+    max-width: 260px;
+    height: 260px;
+    margin: 0 auto;
+    flex-shrink: 0;
+  }
+
+  /* Hard reset canvas positioning for globe.gl */
+  #globeViz canvas {
+    position: relative !important;
+    inset: 0 !important;
+    margin: auto !important;
+    display: block !important;
+  }
+
+  /* Remove Bootstrap column padding on mobile */
+  .col-lg-6 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 }
 
