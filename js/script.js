@@ -133,4 +133,23 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   window.addEventListener('scroll', handleScroll, { passive: true });
+
+  // ===== HIDE/SHOW HEADER ON SCROLL =====
+  let lastScrollTop = 0;
+  const siteHeader = document.querySelector('.site-header');
+  const scrollThreshold = 100; // minimum scroll before hiding
+
+  window.addEventListener('scroll', function() {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) {
+      // Scrolling down and past threshold, hide header
+      siteHeader.style.top = '-80px';
+    } else {
+      // Scrolling up or at top, show header
+      siteHeader.style.top = '0';
+    }
+
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  }, { passive: true });
 });
