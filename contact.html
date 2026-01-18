@@ -12,6 +12,56 @@
   <!-- FontAwesome for icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/emailjs.min.js"></script>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+
+    // Always define the function so onclick never breaks
+    window.sendInquiryEmail = function () {
+
+      // Guard EmailJS availability HERE
+      if (!window.emailjs) {
+        alert('Email service is unavailable. Please use WhatsApp or email.');
+        return;
+      }
+
+      const name = document.querySelector('input[placeholder="Your Name *"]').value.trim();
+      const email = document.querySelector('input[placeholder="Email *"]').value.trim();
+      const product = document.querySelector('input[placeholder*="Product"]').value.trim();
+
+      if (!name || !email) {
+        alert('Name and email are required.');
+        return;
+      }
+
+      const templateParams = {
+        name: name,
+        title: product || 'Bulk Export Inquiry',
+        email: email
+      };
+
+      emailjs.send(
+        'service_globroute',
+        'template_bulk_inquiry',
+        templateParams
+      )
+      .then(() => {
+        alert('Thank you! Your inquiry has been sent.');
+        document.querySelector('form').reset();
+      })
+      .catch(err => {
+        console.error('EmailJS error:', err);
+        alert('Failed to send inquiry. Please try again later.');
+      });
+    };
+
+    // Initialize EmailJS AFTER function exists
+    if (window.emailjs) {
+      emailjs.init('DTXH87Jlbn8Zrodcv');
+    }
+  });
+  </script>
 </head>
 <body>
   <div class="page-background"></div>
@@ -21,7 +71,7 @@
   <nav class="site-header navbar-expand-lg">
     <div class="container">
       <a class="navbar-brand fw-bold" href="index.html">
-        <img src="assets/finallogo.png" alt="Globroute Ventures Logo" class="navbar-logo">
+        <img src="images/finallogo.png" alt="Globroute Ventures Logo" class="navbar-logo">
         Globroute Ventures LLP
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav4">
@@ -150,58 +200,10 @@
   <!-- WhatsApp Floating Button -->
   <a href="https://wa.me/919111111975" target="_blank" class="whatsapp-float">
     <i class="fab fa-whatsapp whatsapp-icon"></i>
+  </a>
+
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/script.js"></script>
-
-  <!-- Email Link Handler for Desktop -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const emailLinks = document.querySelectorAll('.email-link');
-      const isMobile = window.innerWidth <= 992; // Mobile/tablet breakpoint
-
-      if (isMobile) {
-        // On mobile, change to mailto
-        emailLinks.forEach(link => {
-          link.href = 'mailto:business@globroute.com?subject=Bulk Export Inquiry';
-        });
-      }
-      // On desktop, keep as contact.html (already set in HTML)
-    });
-
-    function sendInquiryEmail() {
-      // Get form values
-      const name = document.querySelector('input[placeholder="Your Name *"]').value || '';
-      const company = document.querySelector('input[placeholder="Company Name"]').value || '';
-      const email = document.querySelector('input[placeholder="Email *"]').value || '';
-      const country = document.querySelector('select').value || '';
-      const product = document.querySelector('input[placeholder*="Product of Interest"]').value || '';
-      const message = document.querySelector('textarea').value || '';
-
-      // Build email content
-      let subject = 'Bulk Export Inquiry from Globroute Ventures Website';
-
-      let body = `Dear Globroute Ventures Team,\n\n`;
-      body += `I am interested in your bulk export products. Please find my details below:\n\n`;
-      body += `Name: ${name}\n`;
-      body += `Company: ${company}\n`;
-      body += `Email: ${email}\n`;
-      body += `Country: ${country}\n`;
-      body += `Product of Interest: ${product}\n\n`;
-      body += `Additional Requirements:\n${message}\n\n`;
-      body += `Please contact me with bulk pricing and export details.\n\n`;
-      body += `Best regards,\n${name}`;
-
-      // Encode for URL
-      const encodedSubject = encodeURIComponent(subject);
-      const encodedBody = encodeURIComponent(body);
-
-      // Create mailto link
-      const mailtoLink = `mailto:business@globroute.com?subject=${encodedSubject}&body=${encodedBody}`;
-
-      // Open email client
-      window.location.href = mailtoLink;
-    }
-  </script>
 </body>
 </html>
